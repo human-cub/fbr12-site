@@ -24,38 +24,68 @@
   var modal = document.getElementById('lead-modal');
   function openModal() { if (modal) { modal.hidden = false; document.body.classList.add('nav-lock'); } }
   function closeModal() { if (modal) { modal.hidden = true; document.body.classList.remove('nav-lock'); } }
+
+  /* composition ("Посмотреть состав") modal — built from the source block rec415753826 */
+  function buildSostav() {
+    if (document.getElementById('sostav-modal')) return true;
+    var src = document.getElementById('rec415753826');
+    if (!src) return false;
+    var names = [], tips = [];
+    src.querySelectorAll('.tn-atom[field^="tn_text"]').forEach(function (e) {
+      var t = e.textContent.trim();
+      if (t && t.length < 44 && t.indexOf(':') < 0 && t.toLowerCase().indexOf('состав') < 0) names.push(t);
+    });
+    src.querySelectorAll('.tn-atom__tip-text').forEach(function (e) { tips.push(e.textContent.trim()); });
+    if (!names.length) return false;
+    var items = '';
+    for (var i = 0; i < names.length; i++) {
+      items += '<li class="sostav__item"><span class="sostav__name">' + names[i] + '</span>' +
+        (tips[i] ? '<span class="sostav__desc">' + tips[i] + '</span>' : '') + '</li>';
+    }
+    var m = document.createElement('div');
+    m.id = 'sostav-modal'; m.className = 'sostav-modal'; m.hidden = true;
+    m.innerHTML = '<div class="sostav-modal__backdrop js-sostav-close"></div>' +
+      '<div class="sostav-modal__box" role="dialog" aria-label="Состав Fiber 12">' +
+      '<button class="sostav-modal__x js-sostav-close" aria-label="Закрыть">&times;</button>' +
+      '<h3 class="sostav-modal__title">Состав</h3><ul class="sostav__list">' + items + '</ul></div>';
+    document.body.appendChild(m);
+    return true;
+  }
+  function openSostav() { if (buildSostav()) { document.getElementById('sostav-modal').hidden = false; document.body.classList.add('nav-lock'); } }
+  function closeSostav() { var m = document.getElementById('sostav-modal'); if (m) { m.hidden = true; document.body.classList.remove('nav-lock'); } }
+
   document.addEventListener('click', function (e) {
+    var sost = e.target.closest('a[href="#contopen"]');
+    if (sost) { e.preventDefault(); openSostav(); return; }
+    if (e.target.closest('.js-sostav-close')) { closeSostav(); return; }
     var opener = e.target.closest('a[href="#order"], .js-order');
     if (opener) { e.preventDefault(); openModal(); return; }
     if (e.target.closest('.js-modal-close')) closeModal();
   });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeModal(); closeSostav(); } });
 
-  /* smooth anchor scroll (skips #order) */
+  /* smooth anchor scroll (skips #order and #contopen which open modals) */
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href^="#"]');
     if (!a) return;
     var id = a.getAttribute('href');
-    if (id.length < 2 || id === '#order') return;
+    if (id.length < 2 || id === '#order' || id === '#contopen') return;
     var t = document.querySelector(id);
     if (!t) return;
     e.preventDefault();
     window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
   });
 
-  /* FAQ accordion */
-  document.querySelectorAll('.t668__title, .js-faq-q').forEach(function (q) {
-    q.addEventListener('click', function () {
-      var item = q.closest('.t668__wrapper, .js-faq-item') || q.parentElement;
-      if (item) item.classList.toggle('is-open');
-    });
+  /* FAQ accordion (Tilda T668): toggle .t668__opened on the header; CSS reveals .t668__content */
+  document.querySelectorAll('.t668__header').forEach(function (h) {
+    h.addEventListener('click', function () { h.classList.toggle('t668__opened'); });
   });
 
-  /* benefit carousel: arrows + drag, animated via rAF (no native smooth dependency) */
+  /* benefit carousel: arrows + drag, animated via rAF */
   document.querySelectorAll('.js-carousel').forEach(function (car) {
     var track = car.querySelector('.js-carousel-track');
     if (!track) return;
-    var step = function () { return Math.min(track.clientWidth * 0.9, 320); };
+    var step = function () { return Math.min(track.clientWidth * 0.9, 420); };
     var raf = null;
     function animate(delta) {
       if (raf) cancelAnimationFrame(raf);
@@ -65,16 +95,15 @@
       var t0 = performance.now(), dur = 340;
       function frame(now) {
         var p = Math.min((now - t0) / dur, 1);
-        var e = 0.5 - Math.cos(p * Math.PI) / 2; /* easeInOutSine */
+        var e = 0.5 - Math.cos(p * Math.PI) / 2;
         track.scrollLeft = start + (target - start) * e;
         if (p < 1) raf = requestAnimationFrame(frame);
       }
       raf = requestAnimationFrame(frame);
     }
-    var p = car.querySelector('.js-prev'), n = car.querySelector('.js-next');
-    if (p) p.addEventListener('click', function () { animate(-step()); });
-    if (n) n.addEventListener('click', function () { animate(step()); });
-    /* drag-to-scroll */
+    var pv = car.querySelector('.js-prev'), nx = car.querySelector('.js-next');
+    if (pv) pv.addEventListener('click', function () { animate(-step()); });
+    if (nx) nx.addEventListener('click', function () { animate(step()); });
     var down = false, sx = 0, sl = 0, moved = false;
     track.addEventListener('pointerdown', function (e) { down = true; moved = false; sx = e.clientX; sl = track.scrollLeft; });
     track.addEventListener('pointermove', function (e) { if (down) { if (Math.abs(e.clientX - sx) > 3) moved = true; track.scrollLeft = sl - (e.clientX - sx); } });
