@@ -1,21 +1,24 @@
+/* ---- Inter (self-hosted, substitutes Graphik/GraphikTT of the original) ---- */
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url('inter-400-cyr.woff2') format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url('inter-400-lat.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url('inter-500-cyr.woff2') format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url('inter-500-lat.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url('inter-600-cyr.woff2') format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url('inter-600-lat.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url('inter-700-cyr.woff2') format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url('inter-700-lat.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122;}
+
+/* ---- global font: force Inter on all text; overrides leftover GraphikTT/Roboto/Arial
+        from Tilda block CSS. Icon fonts (background-image atoms / icon classes) untouched. ---- */
+html,body{font-family:'Inter',system-ui,Arial,sans-serif;}
+.t-descr,.t-title,.t-text,.t-name,.tn-atom,.t668__title,.t668__text,.t-btn,.t-input,button,input,textarea,select{font-family:'Inter',system-ui,Arial,sans-serif !important;}
+
 /* ============================================================
    custom.css — self-hosted font, global type, and hand-rebuilt
    semantic header/footer (replace JS-positioned Tilda chrome).
    ============================================================ */
 
-/* ---- Jost (self-hosted, replaces Futura PT) ---- */
-@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:swap;src:url('jost-400-cyr.woff2') format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:400;font-display:swap;src:url('jost-400-lat.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:500;font-display:swap;src:url('jost-500-cyr.woff2') format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:500;font-display:swap;src:url('jost-500-lat.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:600;font-display:swap;src:url('jost-600-cyr.woff2') format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:600;font-display:swap;src:url('jost-600-lat.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:700;font-display:swap;src:url('jost-700-cyr.woff2') format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
-@font-face{font-family:'Jost';font-style:normal;font-weight:700;font-display:swap;src:url('jost-700-lat.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122;}
 
-/* ---- global font application (Tilda applied Futura via JS) ---- */
-html,body{font-family:'Jost',system-ui,Arial,sans-serif;}
-.t-descr,.t-title,.t-text,.t-name,.tn-atom,.t-btn,.t-input,button,input,textarea,select{font-family:'Jost',system-ui,Arial,sans-serif;}
 
 :root{
   --brand:#8ac9b6; --ink:#2d3130; --ink-2:#25322e; --paper:#fff;
@@ -102,4 +105,24 @@ body.nav-lock{overflow:hidden;}
   .benefits__row{flex-direction:column;}
   .benefits__intro{flex:none;}
   .benefits__card{width:260px;}
+}
+
+/* ===== FIX: "Что такое" zero-block mobile layout (static CSS didn't reproduce Tilda JS) =====
+   Photo was overlapping the heading/text; move it below the text like the original. */
+@media screen and (max-width:479px){
+  #rec415618852 .tn-elem__4156188521645182949165{ top:484px !important; left:calc(50% - 69px) !important; width:246px !important; height:246px !important; }
+  #rec415618852 .tn-elem__4156188521645182949165 .tn-atom,
+  #rec415618852 .tn-elem__4156188521645182949165 .tn-atom__img{ width:246px !important; height:246px !important; }
+}
+
+/* Narrow legacy phones (<=339px, e.g. iPhone SE1): text wraps taller, so grow the
+   "Что такое" card and drop the photo/button to avoid a slight overlap. 375px+ unaffected. */
+@media screen and (max-width:339px){
+  #rec415618852 .t396__artboard{ height:846px !important; min-height:846px !important; }
+  #rec415618852 .tn-elem__4156188521645156475061{ height:812px !important; }         /* card bg */
+  #rec415618852 .tn-elem__4156188521645182949165{ top:524px !important; }            /* photo */
+  #rec415618852 .tn-elem__4156188521646299987874{ top:700px !important; }            /* button */
+  #rec415618852 .tn-elem__4156188521645183054133{ top:543px !important; }            /* sparkle */
+  #rec415618852 .tn-elem__4156188521645183097681{ top:555px !important; }            /* sparkle */
+  #rec415618852 .tn-elem__4156188521645248146067{ top:632px !important; }            /* sparkle */
 }
