@@ -138,15 +138,22 @@ body.nav-lock{overflow:hidden;}
 .t668__header{cursor:pointer;}
 .t668__header.t668__opened ~ .t668__content{display:block !important;}
 
-/* 1. "Посмотреть состав" modal */
-.sostav-modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;}
-.sostav-modal[hidden]{display:none;}
-.sostav-modal__backdrop{position:absolute;inset:0;background:rgba(30,38,35,.55);}
-.sostav-modal__box{position:relative;background:#fff;border-radius:24px;padding:34px 32px 28px;max-width:560px;width:100%;max-height:82vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.25);}
-.sostav-modal__x{position:absolute;top:14px;right:18px;border:0;background:none;font-size:32px;line-height:1;color:#9aa3a0;cursor:pointer;}
-.sostav-modal__title{margin:0 0 18px;font-size:26px;font-weight:600;color:#25322e;}
-.sostav__list{list-style:none;margin:0;padding:0;}
-.sostav__item{padding:12px 0;border-bottom:1px solid #eef1f0;}
-.sostav__item:last-child{border-bottom:0;}
-.sostav__name{display:block;font-size:17px;font-weight:600;color:#2d3130;margin-bottom:3px;}
+
+/* 1. "Посмотреть состав" — inline expandable panel (matches original #contopen, not a modal) */
+.sostav-panel{background:#fff;overflow:hidden;}
+.sostav-panel[hidden]{display:none;}
+.sostav-panel__inner{max-width:1200px;margin:0 auto;padding:8px 20px 8px;}
+.sostav-panel__title{font-size:34px;font-weight:600;color:#8ac9b6;margin:0 0 22px;}
+.sostav__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;}
+.sostav__item{display:flex;gap:16px;align-items:flex-start;background:#f6f8f7;border-radius:20px;padding:16px 20px;}
+.sostav__badge{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:#c4e4da;color:#2d3130;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.sostav__body{min-width:0;}
+.sostav__name{display:block;font-size:17px;font-weight:600;color:#2d3130;margin-bottom:4px;}
 .sostav__desc{display:block;font-size:14px;line-height:1.5;color:#6b7470;}
+@media (max-width:760px){
+  .sostav__list{grid-template-columns:1fr;}
+  .sostav-panel__title{font-size:28px;}
+}
+
+/* 2b. Benefit carousel — remove arrow buttons to match the original (owl nav disabled there; drag/swipe only) */
+.benefits__nav{display:none !important;}

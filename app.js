@@ -25,46 +25,53 @@
   function openModal() { if (modal) { modal.hidden = false; document.body.classList.add('nav-lock'); } }
   function closeModal() { if (modal) { modal.hidden = true; document.body.classList.remove('nav-lock'); } }
 
-  /* composition ("Посмотреть состав") modal — built from the source block rec415753826 */
-  function buildSostav() {
-    if (document.getElementById('sostav-modal')) return true;
+  /* composition ("Посмотреть состав") — inline expandable panel like the original (#contopen) */
+  function buildSostavPanel() {
+    var existing = document.getElementById('sostav-panel');
+    if (existing) return existing;
     var src = document.getElementById('rec415753826');
-    if (!src) return false;
+    if (!src) return null;
     var names = [], tips = [];
     src.querySelectorAll('.tn-atom[field^="tn_text"]').forEach(function (e) {
       var t = e.textContent.trim();
       if (t && t.length < 44 && t.indexOf(':') < 0 && t.toLowerCase().indexOf('состав') < 0) names.push(t);
     });
     src.querySelectorAll('.tn-atom__tip-text').forEach(function (e) { tips.push(e.textContent.trim()); });
-    if (!names.length) return false;
+    if (!names.length) return null;
     var items = '';
     for (var i = 0; i < names.length; i++) {
-      items += '<li class="sostav__item"><span class="sostav__name">' + names[i] + '</span>' +
-        (tips[i] ? '<span class="sostav__desc">' + tips[i] + '</span>' : '') + '</li>';
+      items += '<li class="sostav__item"><span class="sostav__badge">' + (i + 1) + '</span>' +
+        '<div class="sostav__body"><span class="sostav__name">' + names[i] + '</span>' +
+        (tips[i] ? '<span class="sostav__desc">' + tips[i] + '</span>' : '') + '</div></li>';
     }
-    var m = document.createElement('div');
-    m.id = 'sostav-modal'; m.className = 'sostav-modal'; m.hidden = true;
-    m.innerHTML = '<div class="sostav-modal__backdrop js-sostav-close"></div>' +
-      '<div class="sostav-modal__box" role="dialog" aria-label="Состав Fiber 12">' +
-      '<button class="sostav-modal__x js-sostav-close" aria-label="Закрыть">&times;</button>' +
-      '<h3 class="sostav-modal__title">Состав</h3><ul class="sostav__list">' + items + '</ul></div>';
-    document.body.appendChild(m);
-    return true;
+    var panel = document.createElement('section');
+    panel.id = 'sostav-panel'; panel.className = 'sostav-panel'; panel.hidden = true;
+    panel.innerHTML = '<div class="sostav-panel__inner"><h2 class="sostav-panel__title">Состав</h2>' +
+      '<ul class="sostav__list">' + items + '</ul></div>';
+    /* insert right after the "Что такое" record, matching the original position */
+    var anchor = document.getElementById('rec415618852') || src;
+    anchor.parentNode.insertBefore(panel, anchor.nextSibling);
+    return panel;
   }
-  function openSostav() { if (buildSostav()) { document.getElementById('sostav-modal').hidden = false; document.body.classList.add('nav-lock'); } }
-  function closeSostav() { var m = document.getElementById('sostav-modal'); if (m) { m.hidden = true; document.body.classList.remove('nav-lock'); } }
+  function toggleSostav(btn) {
+    var panel = buildSostavPanel();
+    if (!panel) return;
+    var willOpen = panel.hidden;
+    panel.hidden = !willOpen;
+    if (btn) btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    if (willOpen) { panel.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  }
 
   document.addEventListener('click', function (e) {
-    var sost = e.target.closest('a[href="#contopen"]');
-    if (sost) { e.preventDefault(); openSostav(); return; }
-    if (e.target.closest('.js-sostav-close')) { closeSostav(); return; }
+    var sost = e.target.closest('a[href="#contopen"], .js-sostav');
+    if (sost) { e.preventDefault(); toggleSostav(sost); return; }
     var opener = e.target.closest('a[href="#order"], .js-order');
     if (opener) { e.preventDefault(); openModal(); return; }
     if (e.target.closest('.js-modal-close')) closeModal();
   });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeModal(); closeSostav(); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
-  /* smooth anchor scroll (skips #order and #contopen which open modals) */
+  /* smooth anchor scroll (skips #order and #contopen) */
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href^="#"]');
     if (!a) return;
@@ -81,7 +88,7 @@
     h.addEventListener('click', function () { h.classList.toggle('t668__opened'); });
   });
 
-  /* benefit carousel: arrows + drag, animated via rAF */
+  /* benefit carousel: drag/swipe (arrows removed to match the original — original owl nav is disabled) */
   document.querySelectorAll('.js-carousel').forEach(function (car) {
     var track = car.querySelector('.js-carousel-track');
     if (!track) return;
