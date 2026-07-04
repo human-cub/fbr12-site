@@ -1,0 +1,10 @@
+{
+  "name": "fbr12",
+  "main": "_worker.js",
+  "compatibility_date": "2026-07-04",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  }
+}
