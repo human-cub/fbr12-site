@@ -94,7 +94,7 @@ body.nav-lock{overflow:hidden;}
 .benefits__nav{margin-top:auto;display:flex;gap:16px;padding-top:28px;}
 .benefits__btn{width:52px;height:52px;border-radius:50%;border:0;background:#fff;color:#74a5ed;font-size:26px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s,box-shadow .15s;}
 .benefits__btn:hover{transform:scale(1.07);box-shadow:0 6px 16px rgba(0,0,0,.12);}
-.benefits__track{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;flex:1 1 auto;min-width:0;scrollbar-width:none;-ms-overflow-style:none;padding:2px;}
+.benefits__track{display:flex;gap:16px;overflow-x:auto;flex:1 1 auto;min-width:0;scrollbar-width:none;-ms-overflow-style:none;padding:2px;}
 .benefits__track::-webkit-scrollbar{display:none;}
 .benefits__card{flex:0 0 auto;width:300px;height:500px;object-fit:cover;border-radius:40px;user-select:none;display:block;}
 @media (max-width:900px){

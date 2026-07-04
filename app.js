@@ -20,7 +20,7 @@
     });
   }
 
-  /* callback modal (opens on any link/button to #order) */
+  /* callback modal */
   var modal = document.getElementById('lead-modal');
   function openModal() { if (modal) { modal.hidden = false; document.body.classList.add('nav-lock'); } }
   function closeModal() { if (modal) { modal.hidden = true; document.body.classList.remove('nav-lock'); } }
@@ -31,7 +31,7 @@
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
-  /* smooth anchor scroll (skips #order which opens the modal) */
+  /* smooth anchor scroll (skips #order) */
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href^="#"]');
     if (!a) return;
@@ -43,7 +43,7 @@
     window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 70, behavior: 'smooth' });
   });
 
-  /* FAQ accordion (T668) */
+  /* FAQ accordion */
   document.querySelectorAll('.t668__title, .js-faq-q').forEach(function (q) {
     q.addEventListener('click', function () {
       var item = q.closest('.t668__wrapper, .js-faq-item') || q.parentElement;
@@ -51,18 +51,35 @@
     });
   });
 
-  /* benefit carousel controls + drag (replaces owl + scrollbooster) */
+  /* benefit carousel: arrows + drag, animated via rAF (no native smooth dependency) */
   document.querySelectorAll('.js-carousel').forEach(function (car) {
     var track = car.querySelector('.js-carousel-track');
     if (!track) return;
-    var step = function () { return Math.min(track.clientWidth * 0.9, 360); };
+    var step = function () { return Math.min(track.clientWidth * 0.9, 320); };
+    var raf = null;
+    function animate(delta) {
+      if (raf) cancelAnimationFrame(raf);
+      var start = track.scrollLeft;
+      var max = track.scrollWidth - track.clientWidth;
+      var target = Math.max(0, Math.min(start + delta, max));
+      var t0 = performance.now(), dur = 340;
+      function frame(now) {
+        var p = Math.min((now - t0) / dur, 1);
+        var e = 0.5 - Math.cos(p * Math.PI) / 2; /* easeInOutSine */
+        track.scrollLeft = start + (target - start) * e;
+        if (p < 1) raf = requestAnimationFrame(frame);
+      }
+      raf = requestAnimationFrame(frame);
+    }
     var p = car.querySelector('.js-prev'), n = car.querySelector('.js-next');
-    if (p) p.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
-    if (n) n.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
-    var down = false, sx = 0, sl = 0;
-    track.addEventListener('pointerdown', function (e) { down = true; sx = e.clientX; sl = track.scrollLeft; });
-    track.addEventListener('pointermove', function (e) { if (down) track.scrollLeft = sl - (e.clientX - sx); });
+    if (p) p.addEventListener('click', function () { animate(-step()); });
+    if (n) n.addEventListener('click', function () { animate(step()); });
+    /* drag-to-scroll */
+    var down = false, sx = 0, sl = 0, moved = false;
+    track.addEventListener('pointerdown', function (e) { down = true; moved = false; sx = e.clientX; sl = track.scrollLeft; });
+    track.addEventListener('pointermove', function (e) { if (down) { if (Math.abs(e.clientX - sx) > 3) moved = true; track.scrollLeft = sl - (e.clientX - sx); } });
     window.addEventListener('pointerup', function () { down = false; });
+    track.addEventListener('click', function (e) { if (moved) e.preventDefault(); }, true);
   });
 
   /* lead form -> Cloudflare Worker (Telegram) */
