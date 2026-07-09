@@ -29,7 +29,7 @@ html,body{font-family:'Inter',system-ui,Arial,sans-serif;}
 .site-header{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 1px 0 rgba(0,0,0,.05);}
 .site-header .wrap{max-width:var(--wrap);margin:0 auto;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
 .site-header .brand{display:inline-flex;align-items:center;flex:0 0 auto;}
-.site-header .brand img{height:46px;width:auto;display:block;}
+.site-header .brand img{height:33px;width:auto;display:block;}
 .site-nav{display:flex;align-items:center;gap:28px;}
 .site-nav a{color:var(--ink);text-decoration:none;font-size:17px;font-weight:500;white-space:nowrap;transition:color .15s;}
 .site-nav a:hover{color:var(--brand);}
@@ -92,13 +92,13 @@ body.nav-lock{overflow:hidden;}
 .benefits *{box-sizing:border-box;}
 .benefits{padding:24px 0 48px;}
 .benefits__row{max-width:1340px;margin:0 auto;padding:0 20px;display:flex;gap:20px;align-items:stretch;}
-.benefits__intro{flex:0 0 430px;background:#cfe6b7;color:#33421f;border-radius:40px;padding:40px 38px;display:flex;flex-direction:column;box-sizing:border-box;}
+.benefits__intro{flex:0 0 430px;background:#83b5dd;color:#fff;border-radius:40px;padding:40px 38px;display:flex;flex-direction:column;box-sizing:border-box;}
 .benefits__intro h2{font-size:30px;font-weight:600;line-height:1.15;margin:0 0 18px;}
 .benefits__intro p{font-size:17px;line-height:1.5;margin:0;}
 .benefits__nav{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:32px;}
 .benefits__btn{box-sizing:border-box;padding:0;width:54px;height:54px;border-radius:50%;border:0;background:#fff;font-size:0;cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 4px 14px rgba(0,0,0,.14);transition:transform .15s,box-shadow .15s;}
 /* clean symmetric chevron drawn with borders (replaces thin ‹› glyphs) */
-.benefits__btn::before{content:'';display:block;width:12px;height:12px;border:solid #6fa348;border-width:0 0 3px 3px;border-radius:1px;}
+.benefits__btn::before{content:'';display:block;width:12px;height:12px;border:solid #5e97cf;border-width:0 0 3px 3px;border-radius:1px;}
 .benefits__btn.js-prev::before{transform:rotate(45deg);margin-left:4px;}
 .benefits__btn.js-next::before{transform:rotate(-135deg);margin-right:4px;}
 .benefits__btn:hover{transform:scale(1.07);box-shadow:0 6px 16px rgba(0,0,0,.12);}
@@ -174,5 +174,5 @@ body.nav-lock{overflow:hidden;}
 @media (max-width:600px){.brand-text{font-size:25px;}}
 
 /* Real HEALTH POINT wordmark (from label), recolored #9BCA84 */
-.brand-logo{height:46px;width:auto;display:block;}
-@media (max-width:600px){.brand-logo{height:40px;}}
+.brand-logo{height:33px;width:auto;display:block;}
+@media (max-width:600px){.brand-logo{height:26px;}}
