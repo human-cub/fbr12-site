@@ -164,3 +164,11 @@ body.nav-lock{overflow:hidden;}
 .site-header .brand{text-decoration:none;}
 .brand-text{font-family:'Inter',system-ui,Arial,sans-serif;font-weight:800;font-size:23px;line-height:1;letter-spacing:.055em;text-transform:uppercase;color:#9bca84;white-space:nowrap;}
 @media (max-width:600px){.brand-text{font-size:20px;}}
+
+/* "Что такое" paragraph: was touching the card's bottom edge — tighten line-height so text keeps a bottom margin inside the green card */
+#rec415618852 .tn-elem__4156188521645165706013 .tn-atom,
+#rec415618852 .tn-elem__4156188521645165706013 .tn-atom *{line-height:1.4 !important;}
+
+/* Header wordmark bigger */
+.brand-text{font-size:31px;letter-spacing:.05em;}
+@media (max-width:600px){.brand-text{font-size:25px;}}
