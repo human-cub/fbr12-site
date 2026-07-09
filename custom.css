@@ -21,7 +21,7 @@ html,body{font-family:'Inter',system-ui,Arial,sans-serif;}
 
 
 :root{
-  --brand:#8ac9b6; --ink:#2d3130; --ink-2:#25322e; --paper:#fff;
+  --brand:#9bca84; --ink:#2d3130; --ink-2:#293225; --paper:#fff;
   --wrap:1200px;
 }
 
@@ -58,7 +58,7 @@ body.nav-lock{overflow:hidden;}
 .footer-nav a:hover{opacity:1;color:var(--brand);}
 .footer-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding:8px 20px 48px;}
 .footer-cols h4{color:var(--brand);font-size:16px;font-weight:600;margin:0 0 14px;}
-.footer-cols p{margin:0 0 8px;font-size:15px;line-height:1.5;color:#dfe6e3;}
+.footer-cols p{margin:0 0 8px;font-size:15px;line-height:1.5;color:#e2e6df;}
 .footer-cols a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25);}
 .footer-cols a:hover{color:var(--brand);border-color:var(--brand);}
 @media (max-width:760px){
@@ -77,16 +77,16 @@ body.nav-lock{overflow:hidden;}
 .lead-modal__backdrop{position:absolute;inset:0;background:rgba(30,38,35,.55);}
 .lead-modal__box{position:relative;background:#fff;border-radius:24px;padding:36px 32px;max-width:420px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,.25);}
 .lead-modal__x{position:absolute;top:14px;right:18px;border:0;background:none;font-size:30px;line-height:1;color:#9aa3a0;cursor:pointer;}
-.lead-modal__box h3{margin:0 0 8px;font-size:26px;font-weight:600;color:#25322e;}
+.lead-modal__box h3{margin:0 0 8px;font-size:26px;font-weight:600;color:#293225;}
 .lead-modal__lead{margin:0 0 20px;color:#5c6763;font-size:16px;}
 .lead-form{display:flex;flex-direction:column;gap:12px;}
 .lead-form input{font-size:16px;padding:14px 16px;border:1px solid #dfe4e2;border-radius:12px;outline:none;}
-.lead-form input:focus{border-color:#8ac9b6;}
+.lead-form input:focus{border-color:#9bca84;}
 .lead-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;}
 .lead-form button[type=submit]{margin-top:4px;padding:15px;border:0;border-radius:30px;background:#005bff;color:#fff;font-size:17px;font-weight:600;cursor:pointer;transition:opacity .15s;}
 .lead-form button[type=submit]:hover{opacity:.9;}
 .lead-form button[type=submit]:disabled{opacity:.6;cursor:default;}
-.lead-status{margin:6px 0 0;font-size:15px;color:#309882;text-align:center;}
+.lead-status{margin:6px 0 0;font-size:15px;color:#499830;text-align:center;}
 
 /* ===================== benefits carousel ===================== */
 .benefits *{box-sizing:border-box;}
@@ -147,10 +147,10 @@ body.nav-lock{overflow:hidden;}
 .sostav-panel{background:#fff;overflow:hidden;}
 .sostav-panel[hidden]{display:none;}
 .sostav-panel__inner{max-width:1200px;margin:0 auto;padding:8px 20px 8px;}
-.sostav-panel__title{font-size:34px;font-weight:600;color:#8ac9b6;margin:0 0 22px;}
+.sostav-panel__title{font-size:34px;font-weight:600;color:#9bca84;margin:0 0 22px;}
 .sostav__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;}
 .sostav__item{display:flex;gap:16px;align-items:flex-start;background:#f6f8f7;border-radius:20px;padding:16px 20px;}
-.sostav__badge{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:#c4e4da;color:#2d3130;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.sostav__badge{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:#cfe4c4;color:#2d3130;font-weight:600;font-size:16px;display:flex;align-items:center;justify-content:center;}
 .sostav__body{min-width:0;}
 .sostav__name{display:block;font-size:17px;font-weight:600;color:#2d3130;margin-bottom:4px;}
 .sostav__desc{display:block;font-size:14px;line-height:1.5;color:#6b7470;}
@@ -159,3 +159,8 @@ body.nav-lock{overflow:hidden;}
   .sostav-panel__title{font-size:28px;}
 }
 
+
+/* Brand wordmark in header: HEALTH POINT (replaces HEALTH BAR logo image) */
+.site-header .brand{text-decoration:none;}
+.brand-text{font-family:'Inter',system-ui,Arial,sans-serif;font-weight:800;font-size:23px;line-height:1;letter-spacing:.055em;text-transform:uppercase;color:#9bca84;white-space:nowrap;}
+@media (max-width:600px){.brand-text{font-size:20px;}}
