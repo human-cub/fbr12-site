@@ -29,7 +29,7 @@ html,body{font-family:'Inter',system-ui,Arial,sans-serif;}
 .site-header{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 1px 0 rgba(0,0,0,.05);}
 .site-header .wrap{max-width:var(--wrap);margin:0 auto;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
 .site-header .brand{display:inline-flex;align-items:center;flex:0 0 auto;}
-.site-header .brand img{height:34px;width:auto;display:block;}
+.site-header .brand img{height:46px;width:auto;display:block;}
 .site-nav{display:flex;align-items:center;gap:28px;}
 .site-nav a{color:var(--ink);text-decoration:none;font-size:17px;font-weight:500;white-space:nowrap;transition:color .15s;}
 .site-nav a:hover{color:var(--brand);}
@@ -174,5 +174,5 @@ body.nav-lock{overflow:hidden;}
 @media (max-width:600px){.brand-text{font-size:25px;}}
 
 /* Real HEALTH POINT wordmark (from label), recolored #9BCA84 */
-.brand-logo{height:48px;width:auto;display:block;}
+.brand-logo{height:46px;width:auto;display:block;}
 @media (max-width:600px){.brand-logo{height:40px;}}
