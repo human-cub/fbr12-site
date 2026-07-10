@@ -251,7 +251,7 @@ form.js-lead button[type=submit], .js-lead [type=submit], #lead-modal [type=subm
   .m-chto__h{ font-size:24px; font-weight:800; margin:0 0 16px; }
   .m-chto p{ font-size:15px; line-height:1.55; text-align:justify; margin:0 0 14px; color:#fff; }
   .m-chto__img{ display:block; width:70%; max-width:230px; height:auto; margin:6px auto 18px; }
-  .m-chto__btn{ display:inline-block; background:#fff; color:#2b3a30 !important; padding:14px 30px; border-radius:30px; font-size:16px; font-weight:600; text-decoration:none; color:#fff !important; -webkit-tap-highlight-color:rgba(0,0,0,0); }
+  .m-chto__btn{ display:inline-block; background:#fff; color:#2b3a30 !important; padding:14px 30px; border-radius:30px; font-size:16px; font-weight:600; text-decoration:none; -webkit-tap-highlight-color:rgba(0,0,0,0); }
 }
 
 /* ===== CUSTOM MOBILE CONTACTS (value buttons) ===== */
