@@ -137,3 +137,22 @@
     });
   });
 })();
+
+/* mobile "own engine": order zero-block elements by their base top so vertical flow matches visual order */
+(function(){
+  function flow(){
+    var mob = window.matchMedia('(max-width:640px)').matches;
+    document.querySelectorAll('.t396__artboard').forEach(function(art){
+      var els = Array.prototype.slice.call(art.children).filter(function(e){return e.classList && e.classList.contains('t396__elem');});
+      if(!mob){ els.forEach(function(e){ e.style.order=''; }); return; }
+      els.map(function(e){
+        var t = parseFloat(e.getAttribute('data-field-top-value'));
+        if(isNaN(t)) t = 0;
+        var l = parseFloat(e.getAttribute('data-field-left-value')); if(isNaN(l)) l=0;
+        return {e:e, k: t*10000 + l};
+      }).sort(function(a,b){return a.k-b.k;}).forEach(function(o,i){ o.e.style.order=i; });
+    });
+  }
+  if(document.readyState!=='loading') flow(); else document.addEventListener('DOMContentLoaded',flow);
+  var t; window.addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(flow,150); });
+})();
