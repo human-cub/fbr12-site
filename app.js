@@ -157,7 +157,7 @@
 
 /* mobile: order elements by base coords for the scoped-flow blocks only */
 (function(){
-  var RECS=['rec420197503','rec425260438','rec415626560','rec420198032'];
+  var RECS=['rec415602357','rec420197439','rec425260438','rec420198032'];
   function order(){
     var mob=window.matchMedia('(max-width:640px)').matches;
     RECS.forEach(function(id){
@@ -173,4 +173,33 @@
   if(document.readyState!=='loading') order(); else document.addEventListener('DOMContentLoaded',order);
   window.addEventListener('load',order);
   var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(order,150);});
+})();
+
+
+/* mobile: swap the cropped hero pack for the full clean pack */
+(function(){
+  function swap(){
+    var mob=window.matchMedia('(max-width:640px)').matches;
+    var el=document.querySelector('#rec415602357 [data-elem-id="1645164268854"] img');
+    if(!el) return;
+    if(mob){ if(!el.dataset.orig) el.dataset.orig=el.getAttribute('src'); el.setAttribute('src','mobile-hero-pack.webp'); }
+    else if(el.dataset.orig){ el.setAttribute('src',el.dataset.orig); }
+  }
+  if(document.readyState!=='loading') swap(); else document.addEventListener('DOMContentLoaded',swap);
+  var t; window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(swap,150);});
+})();
+
+/* mobile: hide sticky header on scroll-down, reveal on scroll-up */
+(function(){
+  var h=document.querySelector('.site-header'); if(!h) return;
+  var last=0, ticking=false;
+  function upd(){
+    var y=window.pageYOffset||document.documentElement.scrollTop;
+    if(window.innerWidth>640){ h.style.transform=''; last=y; ticking=false; return; }
+    if(y>last && y>90){ h.style.transform='translateY(-100%)'; }   /* down -> hide */
+    else { h.style.transform='translateY(0)'; }                    /* up -> show */
+    last=y<0?0:y; ticking=false;
+  }
+  h.style.transition='transform .28s ease';
+  window.addEventListener('scroll',function(){ if(!ticking){ requestAnimationFrame(upd); ticking=true; } },{passive:true});
 })();

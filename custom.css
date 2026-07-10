@@ -194,19 +194,37 @@ body.nav-lock{overflow:hidden;}
   .benefits__track { overflow-x: auto !important; -webkit-overflow-scrolling: touch; max-width: 100% !important; }
 }
 
-/* mobile: scoped vertical flow for genuinely-broken zero-blocks + fit cert + button sizing */
+/* ===== MOBILE: flow broken sections + per-section fixes 2026-07-10 ===== */
 @media (max-width: 640px){
-  #rec420197503 .t396__artboard, #rec425260438 .t396__artboard, #rec415626560 .t396__artboard, #rec420198032 .t396__artboard{ height:auto !important; min-height:0 !important; display:flex !important; flex-direction:column !important; align-items:center !important; padding:22px 16px !important; box-sizing:border-box; }
-  #rec420197503 .t396__artboard > .t396__elem, #rec425260438 .t396__artboard > .t396__elem, #rec415626560 .t396__artboard > .t396__elem, #rec420198032 .t396__artboard > .t396__elem{ position:relative !important; top:auto !important; left:auto !important; right:auto !important; bottom:auto !important; transform:none !important; width:100% !important; max-width:340px !important; height:auto !important; min-height:0 !important; margin:6px 0 !important; display:flex !important; justify-content:center !important; }
-  #rec420197503 .t396__elem > .tn-atom, #rec425260438 .t396__elem > .tn-atom, #rec415626560 .t396__elem > .tn-atom, #rec420198032 .t396__elem > .tn-atom{ position:relative !important; left:auto !important; top:auto !important; right:auto !important; bottom:auto !important; width:auto !important; max-width:100% !important; height:auto !important; min-height:0 !important; white-space:normal !important; text-align:center; box-sizing:border-box; }
-  #rec420197503 .t396__elem img, #rec425260438 .t396__elem img, #rec415626560 .t396__elem img, #rec420198032 .t396__elem img{ max-width:100% !important; height:auto !important; position:relative !important; }
-  /* buttons: keep tappable size in product-card + cert blocks (not contacts links) */
-  #rec420197503 .t396__elem a.tn-atom, #rec415626560 .t396__elem a.tn-atom, #rec420198032 .t396__elem a.tn-atom,
-  #rec420197503 .t396__elem button, #rec415626560 .t396__elem button, #rec420198032 .t396__elem button{ min-width:240px !important; padding-left:22px !important; padding-right:22px !important; }
+  #rec415602357 .t396__artboard, #rec420197439 .t396__artboard, #rec425260438 .t396__artboard, #rec420198032 .t396__artboard{ height:auto !important; min-height:0 !important; display:flex !important; flex-direction:column !important; align-items:center !important; padding:20px 16px !important; box-sizing:border-box; }
+  #rec415602357 .t396__artboard > .t396__elem, #rec420197439 .t396__artboard > .t396__elem, #rec425260438 .t396__artboard > .t396__elem, #rec420198032 .t396__artboard > .t396__elem{ position:relative !important; top:auto !important; left:auto !important; right:auto !important; bottom:auto !important; transform:none !important; width:100% !important; max-width:360px !important; height:auto !important; min-height:0 !important; margin:7px 0 !important; display:flex !important; justify-content:center !important; }
+  #rec415602357 .t396__elem > .tn-atom, #rec420197439 .t396__elem > .tn-atom, #rec425260438 .t396__elem > .tn-atom, #rec420198032 .t396__elem > .tn-atom{ position:relative !important; left:auto !important; top:auto !important; right:auto !important; bottom:auto !important; width:auto !important; max-width:100% !important; height:auto !important; min-height:0 !important; white-space:normal !important; text-align:center; box-sizing:border-box; }
+  #rec415602357 .t396__elem img, #rec420197439 .t396__elem img, #rec425260438 .t396__elem img, #rec420198032 .t396__elem img{ max-width:100% !important; height:auto !important; position:relative !important; }
+  #rec420198032 .t396__elem a.tn-atom, #rec420198032 .t396__elem button, #rec415602357 .t396__elem a.tn-atom{ min-width:240px !important; padding-left:22px !important; padding-right:22px !important; }
+  /* HERO: hide decorations that don't flow (arrow + pink blob) */
+  #rec415602357 .t396__artboard > .t396__elem[data-elem-id="1645166764364"],
+  #rec415602357 .t396__artboard > .t396__elem[data-elem-id="1645164268845"]{ display:none !important; }
+  #rec415602357 .t396__elem[data-elem-id="1645164268854"]{ max-width:300px !important; }
+  /* ЧТО ТАКОЕ (native, NOT flowed — green bg with white text): justify text + center button */
+  #rec415618852 .t396__elem[data-elem-id="1645165706013"] .tn-atom{ text-align:justify !important; }
+  #rec415618852 .t396__elem[data-elem-id="1646299987874"]{ left:50% !important; margin-left:0 !important; transform:translateX(-50%) !important; }
+  /* CAROUSEL: smaller heading + cards fit */
+  .benefits__intro h2{ font-size:25px !important; line-height:1.15 !important; }
+  .benefits__intro{ padding:22px 20px !important; }
+  .benefits__card{ width:74vw !important; max-width:300px !important; height:auto !important; }
+  /* REMOVE redundant blocks on mobile */
+  #rec415626560{ display:none !important; }
+  #rec420197503{ display:none !important; }
+  #rec420197439 .t396__artboard > .t396__elem[data-elem-id="1652849591648"]{ display:none !important; }
+  /* CONTACTS: action links as brand buttons */
+  #rec425260438 .t396__artboard{ padding:14px 16px 6px !important; }
+  #rec425260438 .t396__artboard > .t396__elem{ margin:3px 0 !important; }
+  #rec425260438 .t396__elem[data-elem-id="1645411028720"] .tn-atom,
+  #rec425260438 .t396__elem[data-elem-id="1645411101781"] .tn-atom,
+  #rec425260438 .t396__elem[data-elem-id="1713273933188"] .tn-atom{ display:inline-block !important; background:#9BCA84 !important; color:#fff !important; padding:9px 22px !important; border-radius:24px !important; min-width:150px; font-weight:600; }
+  /* TAP: no blue selection on FAQ */
+  .t668__header, .t668, .t668 *{ -webkit-tap-highlight-color:rgba(0,0,0,0) !important; }
+  .t668__header{ -webkit-user-select:none !important; user-select:none !important; }
 }
-
-/* mobile: hide the duplicate/trailing pack image in product cards (keep the top one) */
-@media (max-width: 640px){
-  #rec415626560 .t396__artboard > .t396__elem[data-elem-id="1649062565493"],
-  #rec420197503 .t396__artboard > .t396__elem[data-elem-id="1649064507143"]{ display:none !important; }
-}
+/* ORDER FORM submit -> brand green (all widths) */
+form.js-lead button[type=submit], .js-lead [type=submit], #lead-modal [type=submit]{ background:#9BCA84 !important; background-image:none !important; border-color:#9BCA84 !important; color:#fff !important; }
