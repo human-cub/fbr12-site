@@ -176,3 +176,6 @@ body.nav-lock{overflow:hidden;}
 /* Real HEALTH POINT wordmark (from label), recolored #9BCA84 */
 .brand-logo{height:33px;width:auto;display:block;}
 @media (max-width:600px){.brand-logo{height:26px;}}
+
+/* hero: move "уникальный состав" pill right so it clears centered pack FIBER|12 (2026-07-09) */
+@media(min-width:1200px){[data-elem-id="1645165491752"]{transform:translateX(104px) !important;}}
