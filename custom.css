@@ -179,3 +179,6 @@ body.nav-lock{overflow:hidden;}
 
 /* hero: move "уникальный состав" pill right so it clears centered pack FIBER|12 (2026-07-09) */
 @media(min-width:1200px){[data-elem-id="1645165491752"]{transform:translateX(104px) !important;}}
+
+/* hero: raise pink backdrop blob so its bottom tip hides behind the pack (no strip under pack) 2026-07-09 */
+@media(min-width:1200px){[data-elem-id="1645164268845"]{transform:translateY(-52px) !important;}}
