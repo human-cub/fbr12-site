@@ -157,7 +157,7 @@
 
 /* mobile: order elements by base coords for the scoped-flow blocks only */
 (function(){
-  var RECS=['rec415602357','rec420197439','rec425260438','rec420198032'];
+  var RECS=['rec420197439','rec425260438','rec420198032'];
   function order(){
     var mob=window.matchMedia('(max-width:640px)').matches;
     RECS.forEach(function(id){
