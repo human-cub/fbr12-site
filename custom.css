@@ -265,7 +265,7 @@ form.js-lead button[type=submit], .js-lead [type=submit], #lead-modal [type=subm
   .benefits__card{ width:74vw !important; max-width:290px !important; height:300px !important; object-position:center top !important; }
   /* HEADER: fixed + reveal on swipe up */
   .site-header{ position:fixed !important; left:0; right:0; top:0; }
-  body{ padding-top:60px; }
+  body{ padding-top:70px; }
 }
 
 /* ===== CUSTOM MOBILE ABOUT (о нас + сертификат) 2026-07-10 ===== */
