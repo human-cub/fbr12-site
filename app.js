@@ -48,8 +48,9 @@
     panel.id = 'sostav-panel'; panel.className = 'sostav-panel'; panel.hidden = true;
     panel.innerHTML = '<div class="sostav-panel__inner"><h2 class="sostav-panel__title">Состав</h2>' +
       '<ul class="sostav__list">' + items + '</ul></div>';
-    /* insert right after the "Что такое" record, matching the original position */
-    var anchor = document.getElementById('rec415618852') || src;
+    /* insert right after the visible section: custom .m-chto on mobile, else the native "Что такое" record */
+    var mchto = document.querySelector('.m-chto');
+    var anchor = (mchto && mchto.offsetParent !== null) ? mchto : (document.getElementById('rec415618852') || src);
     anchor.parentNode.insertBefore(panel, anchor.nextSibling);
     return panel;
   }

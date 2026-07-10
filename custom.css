@@ -250,7 +250,7 @@ form.js-lead button[type=submit], .js-lead [type=submit], #lead-modal [type=subm
   .m-chto{ display:block; background:#9bca84; border-radius:34px; margin:14px 14px; padding:26px 22px 30px; color:#fff; text-align:center; }
   .m-chto__h{ font-size:24px; font-weight:800; margin:0 0 16px; }
   .m-chto p{ font-size:15px; line-height:1.55; text-align:justify; margin:0 0 14px; color:#fff; }
-  .m-chto__img{ display:block; width:70%; max-width:230px; height:auto; margin:6px auto 18px; }
+  .m-chto__img{ display:block; width:58%; max-width:200px; height:auto; margin:6px 0 16px auto; }
   .m-chto__btn{ display:inline-block; background:#fff; color:#2b3a30 !important; padding:14px 30px; border-radius:30px; font-size:16px; font-weight:600; text-decoration:none; -webkit-tap-highlight-color:rgba(0,0,0,0); }
 }
 
@@ -262,10 +262,10 @@ form.js-lead button[type=submit], .js-lead [type=submit], #lead-modal [type=subm
   .m-contacts__h{ font-size:26px; font-weight:800; color:#9bca84; margin:0 0 16px; }
   .m-cbtn{ display:block; width:78%; max-width:300px; margin:11px auto; background:#9bca84; color:#fff; padding:14px 16px; border-radius:28px; font-size:16px; font-weight:600; text-decoration:none; color:#fff !important; -webkit-tap-highlight-color:rgba(0,0,0,0); }
   /* CAROUSEL cards: shorter + image raised */
-  .benefits__card{ width:74vw !important; max-width:290px !important; height:300px !important; object-position:center top !important; }
+  .benefits__card{ width:74vw !important; max-width:290px !important; height:auto !important; object-fit:initial !important; }
   /* HEADER: fixed + reveal on swipe up */
   .site-header{ position:fixed !important; left:0; right:0; top:0; }
-  body{ padding-top:70px; }
+  body{ padding-top:48px; }
 }
 
 /* ===== CUSTOM MOBILE ABOUT (о нас + сертификат) 2026-07-10 ===== */
@@ -278,4 +278,30 @@ form.js-lead button[type=submit], .js-lead [type=submit], #lead-modal [type=subm
   .m-about__cert{ display:block; width:100%; max-width:340px; height:auto; margin:18px auto 16px; }
   .m-about__note{ font-size:14.5px; line-height:1.5; color:#555; text-align:center; margin:0 auto 16px; max-width:330px; }
   .m-about__btn{ display:block; width:-webkit-max-content; width:max-content; max-width:90%; margin:0 auto; background:#9BCA84; color:#fff !important; text-decoration:none; font-size:16px; font-weight:600; padding:13px 40px; border-radius:32px; text-align:center; -webkit-tap-highlight-color:rgba(0,0,0,0); }
+}
+
+/* ===== MOBILE round 3 fixes 2026-07-10 ===== */
+@media (max-width:640px){
+  /* [1] тоньше хедер (был ~70px и наползал) -> ~46px */
+  .site-header .wrap{ padding:8px 16px !important; }
+  .burger{ width:30px !important; height:30px !important; }
+  /* [5] убрать дубль слова «Контакты» перед футером (нативный заголовок rec458581851);
+         сам rec оставляем (в нём якорь #contacts), но прячем текст и схлопываем высоту */
+  #rec458581851{ padding:0 !important; }
+  #rec458581851 .t396__artboard{ height:auto !important; min-height:0 !important; }
+  #rec458581851 .t396__elem{ display:none !important; }
+  /* [7] «Доставка и оплата»: заголовок имел padding 135/90px -> ужать */
+  #rec734178010{ padding-top:24px !important; padding-bottom:12px !important; }
+  /* [8] платёжные логотипы (rec734183570) не влезали -> ряд с переносом, ужать */
+  #rec734183570 .t396__artboard{ height:auto !important; min-height:0 !important; display:flex !important; flex-wrap:wrap !important; align-items:center !important; justify-content:center !important; gap:20px !important; padding:6px 16px 14px !important; }
+  #rec734183570 .t396__elem{ position:relative !important; top:auto !important; left:auto !important; right:auto !important; bottom:auto !important; transform:none !important; width:auto !important; height:auto !important; min-height:0 !important; margin:0 !important; }
+  #rec734183570 .t396__elem .tn-atom{ position:relative !important; left:auto !important; top:auto !important; width:auto !important; height:auto !important; }
+  #rec734183570 .t396__elem img{ height:30px !important; width:auto !important; max-width:22vw !important; display:block !important; }
+  /* [6] о-нас: кнопка СКАЧАТЬ поверх нижней половины листа сертификата */
+  .m-about__cwrap{ position:relative; width:100%; max-width:340px; margin:18px auto 16px; }
+  .m-about__cwrap .m-about__cert{ margin:0 !important; }
+  .m-about__cwrap .m-about__btn{ position:absolute !important; left:50% !important; bottom:13% !important; transform:translateX(-50%) !important; margin:0 !important; box-shadow:0 6px 18px rgba(0,0,0,.22); }
+}
+@media (max-width:640px){
+  #rec734183570 .t396__carrier, #rec734183570 .t396__filter{ display:none !important; }
 }
