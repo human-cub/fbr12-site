@@ -179,3 +179,10 @@ body.nav-lock{overflow:hidden;}
 
 /* hero: move "уникальный состав" pill right so it clears centered pack FIBER|12 (2026-07-09) */
 @media(min-width:1200px){[data-elem-id="1645165491752"]{transform:translateX(104px) !important;}}
+
+/* ===== MOBILE FIXES (2026-07-10) ===== */
+@media (max-width: 640px){
+  html, body { overflow-x: hidden !important; max-width: 100% !important; }
+  /* benefits carousel: scroll inside the track, not the whole page */
+  .js-carousel, .js-carousel-track, [class*="t396__carousel"] { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+}
