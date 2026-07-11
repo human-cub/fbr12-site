@@ -284,7 +284,7 @@ form.js-lead button[type=submit], .js-lead [type=submit], #lead-modal [type=subm
 @media (max-width:640px){
   /* [1] тоньше хедер (был ~70px и наползал) -> ~46px */
   .site-header{ background:#fff !important; }
-  .site-header .wrap{ padding:13px 16px 9px !important; height:auto !important; box-sizing:border-box !important; align-items:center !important; }
+  .site-header .wrap{ padding:11px 16px !important; height:auto !important; box-sizing:border-box !important; align-items:center !important; }
   .brand-logo, .site-header .brand img{ height:22px !important; }
   .burger{ box-sizing:border-box !important; width:26px !important; height:22px !important; padding:3px !important; gap:4px !important; justify-content:center !important; }
   /* [5] убрать дубль слова «Контакты» перед футером (нативный заголовок rec458581851);

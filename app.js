@@ -197,7 +197,7 @@
   function upd(){
     var y=window.pageYOffset||document.documentElement.scrollTop;
     if(window.innerWidth>640){ h.style.transform=''; last=y; ticking=false; return; }
-    if(y>last && y>90){ h.style.transform='translateY(-100%)'; }   /* down -> hide */
+    if(y>last && y>90){ h.style.transform='translateY(-110%)'; }   /* down -> hide (over-translate: не оставлять полосу/тень) */
     else { h.style.transform='translateY(0)'; }                    /* up -> show */
     last=y<0?0:y; ticking=false;
   }
